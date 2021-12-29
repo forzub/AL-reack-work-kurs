@@ -38,7 +38,7 @@ const TTLists = () => {
   const onChangeSearch = (e) => { dispatch(searchListChangeValue(e.target.value)); }
   const onClickSearch = () => { dispatch(searchListChangeValue('')); }
 
-  
+ 
 
   return (
     <>

@@ -17,6 +17,7 @@ const reducer = (state = initState, action) => {
     case actions.SET_FILTER_TITLE : return {...state, filters : { tf_title : actions.TF_TITLE, tf_dedline : false, tf_done : false } };
     case actions.SET_FILTER_DEDLINE : return {...state, filters : { tf_title: false, tf_dedline : actions.TF_DEDLINE, tf_done : false } };
     case actions.SET_FILTER_DONE : return {...state, filters : { tf_title: false, tf_dedline : false, tf_done : actions.TF_DONE } };
+    case actions.RESET_FILTER : return {...state, filters : { tf_title: false, tf_dedline : false, tf_done : false } };
     default: return state;
   }
 

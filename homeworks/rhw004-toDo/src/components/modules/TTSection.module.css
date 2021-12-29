@@ -50,6 +50,7 @@
     right: 0;
     background: #fff;
   border: 1px solid #ccc;
+ 
 }
 
 .tt_l_input{
@@ -94,7 +95,10 @@
   margin: 10px 20px;
 }
 
-.tt_r_group>label{font-size: 0.9em;}
+.tt_r_group>label{font-size: 0.9em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;}
 
 .tt_r_group{
   width: 48%;
@@ -113,7 +117,7 @@
 }
 
 .tt_r_btn, .tt_l_btn{
-  width: 100%;
+  flex: 0 0 40%;
   
 }
 

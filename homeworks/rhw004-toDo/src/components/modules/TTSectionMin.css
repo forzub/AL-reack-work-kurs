@@ -117,7 +117,12 @@ border-right: 1px solid #ccc;}
   border-bottom: 5px solid black;
 }
 
-.task_filter>div{cursor: pointer;}
+.task_filter>div{
+  cursor: pointer;
+  -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
   .tf_after_down:after{
   border: 0 solid transparent;
@@ -159,3 +164,8 @@ text-align: left;}
 
 .tl_title_tx{display: inline-block;max-width: 220px;}
 .tl_item .tl_title, .tl_item .tl_done{align-items: center;}
+
+.button_box{
+  display: flex;
+  justify-content: space-between;
+}

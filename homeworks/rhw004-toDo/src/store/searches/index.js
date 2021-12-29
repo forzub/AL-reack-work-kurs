@@ -5,5 +5,6 @@ export { actions,
   searchTaskCheckChange,
   serchSetFTitle,
   serchSetFDedline,
-  serchSetFDone 
+  serchSetFDone,
+  serchResetFilter 
 } from './actions';

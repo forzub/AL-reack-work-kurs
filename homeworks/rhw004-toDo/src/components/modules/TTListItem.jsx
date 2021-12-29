@@ -17,15 +17,17 @@ function TTListItem({ title, path, children, listID }) {
   const className = [Style.ttl_list_item];
   const { pathname } = useLocation();
 
-  if(store.getState().newTask.butDisabled){ dispatch( newTaskButtonUnDisabled() );}
+  
 
   const isActive = pathname === path;
   if (isActive) { 
+    if(store.getState().newTask.butDisabled){ 
+      dispatch( newTaskButtonUnDisabled() );
+    }
     className.push('ll_active'); 
     dispatch( addClickedKey(listID) );
    
   }
-
 
 
   const onClickEdit = (e) => {
@@ -35,23 +37,25 @@ function TTListItem({ title, path, children, listID }) {
     const editable = store.getState().todo.lists[idkey]['title'];
     dispatch(changeModalListInput(editable));
   }
+  
   const onClickRemove = (e) => {
     dispatch(addIdKey(e.target.getAttribute('listid')));
     dispatch(removeListFromBase());
   }
 
   return (
-    <>
+    
       <li className={className.join(' ')}>{
 
         children ? children : (<>
           <NavLink  to={`${path}`} className={Style.lst_link}>{title}</NavLink>
           <MyButton listid={listID} className={Style.lst_btn} onClick={onClickEdit}>E</MyButton>
           <MyButton listid={listID} className={Style.lst_btn} onClick={onClickRemove}>X</MyButton>
-        </>)
+          </>
+        )
       }</li>
 
-    </>
+    
   );
 }
 

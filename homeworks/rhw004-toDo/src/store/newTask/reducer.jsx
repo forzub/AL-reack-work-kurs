@@ -6,7 +6,8 @@ import { actions } from "./actions";
 const initState = {
   task: {},
   visible: false,
-  butDisabled: true
+  butDisabled: true,
+  
 };
 
 const reducer = (state = initState, action) => {

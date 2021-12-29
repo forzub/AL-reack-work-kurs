@@ -5,12 +5,13 @@ const actions = Object.freeze(
      SEARCH_LIST_CHANGE_VALUE : 'searches/search_list_change_value',
      SEARCH_TASK_CHANGE_VALUE : 'searches/search_task_change_value',
      SEARCH_TASK_CHECK_CHANGE : 'searches/search_task_check_change',
-     TF_TITLE   : 'tf_title',
-     TF_DEDLINE : 'tf_dedline',
-     TF_DONE    : 'tf_done',
+     TF_TITLE   : 'title',
+     TF_DEDLINE : 'dedline',
+     TF_DONE    : 'done',
      SET_FILTER_TITLE : 'search/setFilterTitle',
      SET_FILTER_DEDLINE : 'search/setFilterDedline',
-     SET_FILTER_DONE : 'search/setFilterDone'
+     SET_FILTER_DONE : 'search/setFilterDone',
+     RESET_FILTER : 'search/resetfilter'
   }
 );
 
@@ -20,6 +21,7 @@ const searchTaskCheckChange = () => ( {type: actions.SEARCH_TASK_CHECK_CHANGE} )
 const serchSetFTitle = () => ( {type:actions.SET_FILTER_TITLE} );
 const serchSetFDedline = () => ( {type:actions.SET_FILTER_DEDLINE} );
 const serchSetFDone = () => ( {type:actions.SET_FILTER_DONE} );
+const serchResetFilter = () => ( {type:actions.RESET_FILTER} );
 
 
 export { 
@@ -29,5 +31,6 @@ export {
   searchTaskCheckChange,
   serchSetFTitle,
   serchSetFDedline,
-  serchSetFDone
+  serchSetFDone,
+  serchResetFilter
 };

@@ -12,7 +12,11 @@ const actions = Object.freeze(
         REMOVE_LIST_ELEMENT: 'todo/removeListElement',
         ADD_ID_KEY: 'todo/addKey',
         ADD_ID_CLICKED_KEY: 'todo/addClickedKey',
-        SET_TASK_ITEM: 'todo/setTaskItem'
+        SET_TASK_ITEM: 'todo/setTaskItem',
+        SET_SERVICE_DATA: 'todo/setService',
+        TASK_DONE_CHANGE: 'todo/taskDone_Change',
+        TASK_REMOVE: 'todo/taskRemove',
+        TASK_EDIT: 'todo/taskEdit',
     }
 );
 
@@ -21,7 +25,12 @@ const loadTotalList = (payload) => ({ type: actions.LOAD_TOTAL_LIST, payload });
 const addIdKey = (payload) => ({ type: actions.ADD_ID_KEY, payload });
 const addClickedKey = (payload) => ({ type: actions.ADD_ID_CLICKED_KEY, payload });
 const editListsItem = (payload) => ({ type: actions.EDIT_LIST_TITUL, payload });
-const includeTaskItem = (payload) => ({ type: actions.SET_TASK_ITEM, payload});
+const includeTaskItem = (payload) => ({ type: actions.SET_TASK_ITEM, payload });
+const todoSetService = (payload) => ({ type: actions.SET_SERVICE_DATA, payload });
+
+const todoTaskDoneGhange = (payload) => ({ type: actions.TASK_DONE_CHANGE, payload });
+const todoTaskRemove = (payload) => ({ type: actions.TASK_REMOVE, payload });
+const todoTaskEdit = (payload) => ({ type: actions.TASK_EDIT, payload });
 
 
 const loadListFromBase = () => (dispatch) => {
@@ -45,20 +54,21 @@ const removeListFromBase = () => (dispatch, getStore) => {
         .catch(e => console.error(e));
 }
 
+//------------------------------------------------------------
 
 const setTaskItemToBase = () => (dispatch, getState) => {
     const newState = clone(getState().todo);
     const newTask = getState().newTask.task;
     const key = newState.clickedKey;
     const newkey = '' + Date.now();
-    
-    newState.lists[key].tasks = {...newState.lists[key].tasks, [newkey] : newTask}
-    const editable = {[newkey]:{...newTask}};
+
+    newState.lists[key].tasks = { ...newState.lists[key].tasks, [newkey]: newTask }
+    const editable = { [newkey]: { ...newTask } };
 
     fetch(`${BASE_URL}list/${key}/tasks.json`, { method: 'PATCH', body: JSON.stringify(editable), })
-    .then(()=>dispatch( includeTaskItem(newState) ))
-    .catch(e => console.error(e));
-  
+        .then(() => dispatch(includeTaskItem(newState)))
+        .catch(e => console.error(e));
+
 }
 
 
@@ -72,12 +82,12 @@ const chengeListDataInBase = () => (dispatch, getStore) => {
         newPath += '-' + newDate;
     }
 
-    const editable = {id : idKey, path: newPath, title: newValue}
+    const editable = { id: idKey, path: newPath, title: newValue }
 
     fetch(`${BASE_URL}list/${idKey}.json`, { method: 'PATCH', body: JSON.stringify(editable), })
         .then(() => {
-            dispatch( changeModalListInput('') );
-            dispatch( closeModalList() );
+            dispatch(changeModalListInput(''));
+            dispatch(closeModalList());
             dispatch(editListsItem(editable));
         })
         .catch(e => console.error(e));
@@ -86,16 +96,26 @@ const chengeListDataInBase = () => (dispatch, getStore) => {
     // console.log(editable);
 
 }
+//************* */
 
 
 
-export { actions, 
-    setListsItem, 
-    addIdKey, 
-    loadListFromBase, 
-    removeListFromBase, 
-    chengeListDataInBase, 
+
+
+
+export {
+    actions,
+    setListsItem,
+    addIdKey,
+    loadListFromBase,
+    removeListFromBase,
+    chengeListDataInBase,
     setTaskItemToBase,
     addClickedKey,
-    includeTaskItem
- };
+    includeTaskItem,
+
+    todoSetService,
+    todoTaskDoneGhange,
+    todoTaskRemove,
+    todoTaskEdit
+};

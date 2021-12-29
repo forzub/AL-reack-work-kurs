@@ -1,11 +1,20 @@
 export { reducer } from './reducer';
-export { actions, 
-  setListsItem, 
-  addIdKey, 
-  loadListFromBase, 
-  removeListFromBase, 
-  chengeListDataInBase, 
+export {
+  actions,
+  setListsItem,
+  addIdKey,
+  loadListFromBase,
+  removeListFromBase,
+  chengeListDataInBase,
   setTaskItemToBase,
   addClickedKey,
-  includeTaskItem
+  includeTaskItem,
+
+  todoSetService
 } from './actions';
+
+export {
+  todoTaskRemoveFromBase,
+  todoTaskEditToBase,
+  todoTaskChanheChacket,
+} from './utilsTasks';
